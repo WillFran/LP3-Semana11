@@ -24,29 +24,41 @@ layout = """
 """
 
 def index(request):
-
-    return render(request ,'index.html')
+    estudiantes = [ 'Willy Delgado', 
+                    'Jhon Wick',
+                    'Peter Parker',
+                    'Clark Kent']
+    estudiantes = []
+    return render(request,'index.html', {
+        'titulo':'Inicio',
+        'mensaje':'Proyecto Web Con DJango',
+        'estudiantes': estudiantes
+    })
 
 def saludo(request):
-    return render(request,'saludo.html')
+    return render(request,'saludo.html'),{
+        'titulo':'saludo',
+        'autor_saludo':'Willy Delgado Tuanama'
+    }
 
 def rango(request):
     a = 10
     b = 20
-    resultado = f"""
-        <h2> Numeros de [{a},{b}] </h2>
-            Resultado: <br>
-        <ul>
-    """
-    while a <= b:
-        resultado += f"<li> {a} </li>"
-        a+=1
-        resultado += "</ul>"
-    return HttpResponse(layout + resultado)
+    rango_numeros = range(a,b+1)
+    return render(request,'rango.html',{
+        'titulo':'Rango',
+        'a':a,
+        'b':b,
+        'rango_numeros':rango_numeros
+    })
 
-def rango2(request,a=0,b=100):
-    if a>b:
-        return redirect('rango2',a=b,b=a)
-    resultado = f"""
-        <h2> Numeros de [{a},{b}] </h2>"""
-    return HttpResponse(layout + resultado)
+def rango2(request):
+    a = 10
+    b = 15
+    rango_numeros = range(a,b+1)
+    return render(request,'rango2.html',{
+        'titulo':'Rango 2',
+        'a':a,
+        'b':b,
+        'rango_numeros':rango_numeros
+    })

@@ -10,16 +10,16 @@
     </title>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
-
-    <div id="logotipo">
-        <img src="{% static 'images/logo.png' %}" />
-        <h1>Proyecto Web (LP3)</h1>
-        </div>
 </head>
 
-<body>
-    <h1> Proyecto Web (LP3) | Willy Delgado </h1>
-    <hr />
+<header>
+    <div id="logotipo">
+        <img src="{% static 'images/logo.png' %}"/>
+        <h1>Proyecto Web (LP3)</h1>
+    </div>
+</header>
+
+<nav>
     <ul>
         <li>
             <a href="/inicio"> Inicio</a>
@@ -31,18 +31,30 @@
             <a href="/rango"> Mostrar Números [a,b]</a>
         </li>
         <li>
-            <a href="/rango2/10/15"> Mostrar Números [10,15]</a>
+            <a href="/rango2"> Mostrar Números [10,15]</a>
         </li>
     </ul>
-    <hr />
+</nav>
 
-    <div id="content">
-        {% block content %}
-        {% endblock %}
-    </div>
-    <footer>
-        UNTELS - Lenguaje de Programación III &copy; Willy Delgado
-    </footer>
-</body>
+
+<div class="barra">
+        <span class="esquina-izquierda"></span>
+        <span class="relleno-barra"></span>
+        <span class="esquina-derecha"></span>
+</div>
+
+<div id="content">
+        <div class="box">
+            
+            {% block content %}
+                <strong> Contenido en layout (Padre) </strong>
+            {% endblock %}
+        </div>
+</div>
+
+<footer>
+        UNTELS - Lenguaje de Programación III &copy; Willy Delgado - {% now "d/m/Y h:m:s" %}
+</footer>
+
 
 </html>
